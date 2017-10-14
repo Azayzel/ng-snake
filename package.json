@@ -1,6 +1,18 @@
 {
   "name": "ng-snake",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Azayzel/ng-snake.git"
+  },
+  "keywords": [
+    "Snake",
+    "HTML5",
+    "Angular",
+    "Games",
+    "TypeScript"
+  ],
+  "author": "Josh Lavely",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -10,7 +22,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^4.2.4",
     "@angular/common": "^4.2.4",
