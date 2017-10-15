@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
   public d: string;
   public food: any;
   public score: number = 0;
+  public lives: number = 3;
   constructor() { }
 
 
@@ -130,10 +131,19 @@ public paint() {
   //Lets add the code for body collision
   //Now if the head of the snake bumps into its body, the game will restart
   if (nx == -1 || nx == this.w / this.cw || ny == -1 || ny == this.h / this.cw || this.check_collision(nx, ny, this.snake_array)) {
+
+    if(this.lives === 0){
       //restart game
-      this.init();
+      alert("Ran Out of Lives!!")
       //Lets organize the code a bit now.
+      document.location.reload();
       return;
+    }
+    else{
+      this.lives--;
+      this.init();
+      return;
+    }
   }
 
   //Lets write the code to make the snake eat the food
@@ -167,6 +177,9 @@ public paint() {
   //Lets paint the score
   var score_text = "Score: " + this.score;
   this.ctx.fillText(score_text, 5, this.h - 5);
+  // Paint lives
+  var lives_text = "Lives: " + this.lives;
+  this.ctx.fillText(lives_text, 400, this.h - 5);
 }
 
 //Lets first create a generic function to paint cells

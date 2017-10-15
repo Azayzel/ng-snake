@@ -1,0 +1,16 @@
+
+.title {
+    opacity: 0.4;
+}
+#game-container {
+    width: 100%;
+    text-align:center;
+ }
+ 
+ canvas {
+    display: inline;
+    -webkit-box-shadow: 4px 2px 10px 0px rgba(126, 50, 50, 0.45);
+    -moz-box-shadow:    4px 2px 10px 0px rgba(126, 50, 50, 0.45);
+    box-shadow:         4px 2px 10px 0px rgba(126, 50, 50, 0.45);
+ }
+
