@@ -7,7 +7,7 @@ import { Component, HostListener, OnInit, AfterViewInit,  } from '@angular/core'
 })
 export class AppComponent implements OnInit {
   title = 'ng-Snake';
-
+  public isPaused: boolean = false;
 
   public canvas: HTMLCanvasElement;
   public ctx: CanvasRenderingContext2D;
@@ -60,6 +60,12 @@ ngOnInit() {
       this.init();
   }
 
+  public pauseGame(){
+    console.log("pausing game",this.isPaused)
+    if(this.isPaused){this.isPaused = false;}
+    else{this.isPaused = true;}
+
+  }
 
 
 public init() {
@@ -105,7 +111,9 @@ public create_food() {
 //Lets paint the snake now
 
 public paint() {
-  console.log(this.ctx)
+  if (this.isPaused){return;}
+  else{
+    console.log(this.isPaused)
   //To avoid the snake trail we need to paint the BG on every frame
   //Lets paint the canvas now
   this.ctx.fillStyle = "white";
@@ -180,6 +188,7 @@ public paint() {
   // Paint lives
   var lives_text = "Lives: " + this.lives;
   this.ctx.fillText(lives_text, 400, this.h - 5);
+}
 }
 
 //Lets first create a generic function to paint cells
