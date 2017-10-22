@@ -71,17 +71,16 @@ ngOnInit() {
       this.init();
   }
 
-public openMyDialog() {
+public openMyDialog(){
     let myDialog:any = <any>document.getElementById("modalDialog");
-    myDialog.showModal();
-    
-}
-public closeDialog(){
+    myDialog.showModal();    }
+public closeDialog()
+{
   let myDialog:any = <any>document.getElementById("modalDialog");
   myDialog.close('cancelling');
 }
 
-public saveScore(){
+public saveScore() {
   this.highScores.push({name: this.name.nativeElement.value, score: this.score});
   this.highScores = this.highScores.sort((a,b) => b.score - a.score);
   let myDialog:any = <any>document.getElementById("modalDialog");
