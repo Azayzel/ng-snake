@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, AfterViewInit,  } from '@angular/core';
+import { Component, HostListener, OnInit, AfterViewInit, ElementRef, ViewChild  } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +6,10 @@ import { Component, HostListener, OnInit, AfterViewInit,  } from '@angular/core'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('name') name;
   title = 'ng-Snake';
   public isPaused: boolean = false;
-
+  
   public canvas: HTMLCanvasElement;
   public ctx: CanvasRenderingContext2D;
 
@@ -34,6 +35,13 @@ export class AppComponent implements OnInit {
   }
 
   public keys: Array<any> = [];
+  public highScores : Array<any> = [
+    {name: "Troy", score: "35"},
+    {name: "Jessica", score: "56"},
+    {name: "Donovan", score: "98"},
+    {name: "Richard", score: "36"},
+
+  ]
   public w: number = 450;
   public h: number = 450;
   //Lets save the cell width in a variable for easy control
@@ -42,7 +50,7 @@ export class AppComponent implements OnInit {
   public food: any;
   public score: number = 0;
   public lives: number = 3;
-  constructor() { }
+  constructor(private el: ElementRef) { }
 
 
 
@@ -56,9 +64,29 @@ ngOnInit() {
   this.ctx = this.canvas.getContext("2d");
   this.w = this.canvas.width;
   this.h = this.canvas.height;
+
+  // sort scores
+  this.highScores = this.highScores.sort((a,b) => b.score - a.score);
     // begin game
       this.init();
   }
+
+public openMyDialog() {
+    let myDialog:any = <any>document.getElementById("modalDialog");
+    myDialog.showModal();
+    
+}
+public closeDialog(){
+  let myDialog:any = <any>document.getElementById("modalDialog");
+  myDialog.close('cancelling');
+}
+
+public saveScore(){
+  this.highScores.push({name: this.name.nativeElement.value, score: this.score});
+  this.highScores = this.highScores.sort((a,b) => b.score - a.score);
+  let myDialog:any = <any>document.getElementById("modalDialog");
+  myDialog.close('Saving Score');
+}
 
   public pauseGame(){
     console.log("pausing game",this.isPaused)
@@ -67,13 +95,17 @@ ngOnInit() {
 
   }
 
-
+  public startGame() {
+    this.score = 0;
+    this.lives = 3;
+    this.isPaused = false;
+    this.init();
+  }
 public init() {
   this.d = "right"; //default direction
   this.create_snake();
   this.create_food(); //Now we can see the food particle
   //finally lets display the score
-  this.score = 0;
 
   //Lets move the snake now using a timer which will trigger the paint function
   //every 60ms
@@ -142,9 +174,11 @@ public paint() {
 
     if(this.lives === 0){
       //restart game
-      alert("Ran Out of Lives!!")
+      //alert("Ran Out of Lives!!")
+      this.openMyDialog();
       //Lets organize the code a bit now.
-      document.location.reload();
+      this.pauseGame();
+
       return;
     }
     else{
