@@ -1,1 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+	margin: 0;
+	padding: 0;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+
+  .btn {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #555;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    background-color: #f3f3f3;
+  }
+  .btn.disabled {
+    cursor: not-allowed;
+    color: #ddd;
+    border-color: #ddd;
+  }
+  .btn-group {
+    padding: 15px 20px;
+    text-align: right;
+    background-color: #f5f6f8;
+  }
+  .btn-primary {
+    color: #fff;
+    border-color: #0066c0;
+    background-color: #0074d9;
+  }
+  .btn-primary:hover {
+    background-color: #0066c0;
+  }
+  .btn-danger {
+    color: #fff;
+    border-color: #ab3326;
+    background-color: #c0392b;
+  }
+  .btn-danger:hover {
+    background-color: #ab3326;
+  }
+  .btn-cancel {
+    color: #999;
+    border-color: #ddd;
+  }
+  .btn-cancel:hover {
+    background-color: #e6e6e6;
+  }
